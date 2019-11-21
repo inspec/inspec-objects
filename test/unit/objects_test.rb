@@ -1,5 +1,5 @@
 require "spec_helper"
-require "inspec/objects"
+require "inspec-objects"
 
 describe "Objects" do
   describe "Inspec::Object::Test" do

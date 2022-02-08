@@ -15,6 +15,11 @@ Gem::Specification.new do |spec|
   spec.homepage      = "https://github.com/mitre/inspec-objects"
   spec.license       = "Apache-2.0"
 
+  spec.metadata = {
+    'github_repo' => 'ssh://github.com/mitre/inspec-objects'
+  }
+
+
   spec.files = %w{
     README.md mitre-inspec-objects.gemspec Gemfile
   } + Dir.glob("{lib}/**/*", File::FNM_DOTMATCH).reject { |f| File.directory?(f) }

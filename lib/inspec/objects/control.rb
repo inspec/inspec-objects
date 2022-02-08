@@ -2,13 +2,14 @@
 
 module Inspec::Object
   class Control
-    attr_accessor :header, :id, :title, :descriptions, :impact, :tests, :tags, :refs, :only_if
+    attr_accessor :header, :id, :title, :descriptions, :impact, :tests, :post_body, :tags, :refs, :only_if
     def initialize
       @header = ""
       @tests = []
       @tags = []
       @refs = []
       @descriptions = {}
+      @post_body = ""
     end
 
     def add_header(header)
@@ -23,6 +24,10 @@ module Inspec::Object
       @tags.push(t)
     end
 
+    def add_post_body(post_body)
+      @post_body = post_body
+    end
+
     def to_hash
       {
         header: header,
@@ -32,6 +37,7 @@ module Inspec::Object
         impact: impact,
         tests: tests.map(&:to_hash),
         tags: tags.map(&:to_hash),
+        post_body: post_body,
       }
     end
 
@@ -54,6 +60,7 @@ module Inspec::Object
       refs.each { |t| res.push("  ref   #{print_ref(t)}") }
       res.push "  only_if { #{only_if} }" if only_if
       tests.each { |t| res.push(indent(t.to_ruby, 2)) }
+      res.push(indent(post_body, 2)) unless post_body.nil? || post_body.empty?
       res.push "end"
       res.join("\n")
     end

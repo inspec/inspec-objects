@@ -12,6 +12,7 @@ module Inspec
     require_relative "objects/or_test"
     require_relative "objects/test"
     require_relative "objects/input"
+    require_relative "objects/post_body"
     require_relative "objects/header"
   end
 end

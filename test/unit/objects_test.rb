@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require "spec_helper"
-require "inspec-objects"
+require "mitre-inspec-objects"
 
 describe "Objects" do
   describe "Inspec::Object::Test" do

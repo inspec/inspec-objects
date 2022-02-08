@@ -3,7 +3,7 @@
 require "bundler"
 require "rake/testtask"
 
-Bundler::GemHelper.install_tasks name: "inspec-objects"
+Bundler::GemHelper.install_tasks name: "mitre-inspec-objects"
 
 Rake::TestTask.new(:unit) do |t|
   t.libs << "test"

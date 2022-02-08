@@ -2,7 +2,7 @@
 
 source "https://rubygems.org"
 
-gem "inspec-objects", path: "."
+gem "mitre-inspec-objects", path: "."
 
 group :test do
   gem "chef-utils", "~> 16.6.14"

@@ -1,5 +1,5 @@
 # inspec-objects
-[![Gem Version](https://badge.fury.io/rb/inspec-objects.svg)](https://badge.fury.io/rb/inspec-objects)
+[![Gem Version](https://badge.fury.io/rb/mitre-inspec-objects.svg)](https://badge.fury.io/rb/mitre-inspec-objects)
 
 **Umbrella Project**: [InSpec](https://github.com/chef/chef-oss-practices/blob/master/projects/inspec.md)
 

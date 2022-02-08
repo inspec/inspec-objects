@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Inspec
   module Object
     require_relative "objects/tag"
@@ -10,5 +12,6 @@ module Inspec
     require_relative "objects/or_test"
     require_relative "objects/test"
     require_relative "objects/input"
+    require_relative "objects/header"
   end
 end

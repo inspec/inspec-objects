@@ -1,11 +1,18 @@
+# frozen_string_literal: true
+
 module Inspec::Object
   class Control
-    attr_accessor :id, :title, :descriptions, :impact, :tests, :tags, :refs, :only_if
+    attr_accessor :header, :id, :title, :descriptions, :impact, :tests, :tags, :refs, :only_if
     def initialize
+      @header = ""
       @tests = []
       @tags = []
       @refs = []
       @descriptions = {}
+    end
+
+    def add_header(header)
+      @header = header
     end
 
     def add_test(t)
@@ -18,6 +25,7 @@ module Inspec::Object
 
     def to_hash
       {
+        header: header,
         id: id,
         title: title,
         descriptions: descriptions,
@@ -27,8 +35,10 @@ module Inspec::Object
       }
     end
 
-    def to_ruby # rubocop:disable Metrics/AbcSize
-      res = ["control #{id.inspect} do"]
+    def to_ruby
+      res = []
+      res.push header unless header.nil? || header.empty?
+      res.push "control #{id.inspect} do"
       res.push "  title #{title.inspect}" unless title.to_s.empty?
       descriptions.each do |label, text|
         if label == :default

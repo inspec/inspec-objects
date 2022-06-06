@@ -1,11 +1,19 @@
+# frozen_string_literal: true
+
 module Inspec::Object
   class Control
-    attr_accessor :id, :title, :descriptions, :impact, :tests, :tags, :refs, :only_if
+    attr_accessor :header, :id, :title, :descriptions, :impact, :tests, :post_body, :tags, :refs, :only_if
     def initialize
+      @header = ""
       @tests = []
       @tags = []
       @refs = []
       @descriptions = {}
+      @post_body = ""
+    end
+
+    def add_header(header)
+      @header = header
     end
 
     def add_test(t)
@@ -16,19 +24,27 @@ module Inspec::Object
       @tags.push(t)
     end
 
+    def add_post_body(post_body)
+      @post_body = post_body
+    end
+
     def to_hash
       {
+        header: header,
         id: id,
         title: title,
         descriptions: descriptions,
         impact: impact,
         tests: tests.map(&:to_hash),
         tags: tags.map(&:to_hash),
+        post_body: post_body,
       }
     end
 
-    def to_ruby # rubocop:disable Metrics/AbcSize
-      res = ["control #{id.inspect} do"]
+    def to_ruby
+      res = []
+      res.push header unless header.nil? || header.empty?
+      res.push "control #{id.inspect} do"
       res.push "  title #{title.inspect}" unless title.to_s.empty?
       descriptions.each do |label, text|
         if label == :default
@@ -44,6 +60,7 @@ module Inspec::Object
       refs.each { |t| res.push("  ref   #{print_ref(t)}") }
       res.push "  only_if { #{only_if} }" if only_if
       tests.each { |t| res.push(indent(t.to_ruby, 2)) }
+      res.push(indent(post_body, 2)) unless post_body.nil? || post_body.empty?
       res.push "end"
       res.join("\n")
     end

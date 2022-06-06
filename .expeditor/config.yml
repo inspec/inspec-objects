@@ -1,12 +1,12 @@
 ---
 project:
-  alias: inspec-objects
+  alias: mitre-inspec-objects
 
 slack:
   notify_channel: "compliance-profile"
 
 rubygems:
-  - inspec-objects
+  - mitre-inspec-objects
 
 github:
   # This deletes the GitHub PR branch after successfully merged into the release branch

@@ -1,13 +1,15 @@
+# frozen_string_literal: true
+
 require "bundler"
 require "rake/testtask"
 
-Bundler::GemHelper.install_tasks name: "inspec-objects"
+Bundler::GemHelper.install_tasks name: "mitre-inspec-objects"
 
 Rake::TestTask.new(:unit) do |t|
   t.libs << "test"
   t.test_files = Dir.glob([
-    "test/unit/**/*_test.rb",
-  ])
+                            "test/unit/**/*_test.rb",
+                          ])
 end
 
 begin
